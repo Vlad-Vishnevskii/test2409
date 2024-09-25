@@ -6,8 +6,8 @@ export const Header: React.FC = () => {
       <header>
         <nav>
           <Link to="/">Главная</Link>
-          <Link to="/org">Организации</Link>
-          <Link to="/sotr">Сотрудники</Link>
+          <Link to="/organizations">Организации</Link>
+          <Link to="/workers">Сотрудники</Link>
         </nav>
       </header>
       <main>
