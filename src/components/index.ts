@@ -1,3 +1,4 @@
-export * from './header';
 export * from './table-workers';
 export * from './table-organizations';
+export * from './modal-workers';
+export * from './modal-organizations';

@@ -1,6 +1,8 @@
 import { Link, Outlet } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import { ModalModule } from '../modules';
 
-export const Header: React.FC = () => {
+export const Layout: React.FC = observer(() => {
   return (
     <>
       <header>
@@ -13,6 +15,7 @@ export const Header: React.FC = () => {
       <main>
         <Outlet />
       </main>
+      <ModalModule />
     </>
   );
-};
+});
