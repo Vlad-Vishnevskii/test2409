@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, autorun } from 'mobx';
 
 export interface Organization {
   name: string;
@@ -19,6 +19,16 @@ export class OrganizationsStore {
 
   constructor() {
     makeAutoObservable(this);
+
+    const savedOrganizations = localStorage.getItem('organizations');
+
+    if (savedOrganizations) {
+      this.organizations = JSON.parse(savedOrganizations);
+    }
+
+    autorun(() => {
+      localStorage.setItem('organizations', JSON.stringify(this.organizations));
+    });
   }
 
   addItem(organization: Organization) {
@@ -34,7 +44,6 @@ export class OrganizationsStore {
     this.organizations = this.organizations.filter(
       (item) => item.id !== organization.id
     );
-    // this.lastOrganizationId = this.getLastOrganizationId();
   }
 
   updateItem(organization: Organization, id: string): void {

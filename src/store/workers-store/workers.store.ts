@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, autorun } from 'mobx';
 
 interface Worker {
   firstName: string;
@@ -22,6 +22,16 @@ export class WorkersStore {
 
   constructor() {
     makeAutoObservable(this);
+
+    const savedWorkers = localStorage.getItem('workers');
+
+    if (savedWorkers) {
+      this.workers = JSON.parse(savedWorkers);
+    }
+
+    autorun(() => {
+      localStorage.setItem('workers', JSON.stringify(this.workers));
+    });
   }
 
   addItem(worker: Worker) {
@@ -36,7 +46,6 @@ export class WorkersStore {
 
   removeItem(worker: Worker) {
     this.workers = this.workers.filter((item) => item.id !== worker.id);
-    // this.lastWorkerId = this.getLastWorkerId();
   }
 
   updateItem(worker: Worker, id: string): void {
@@ -51,7 +60,6 @@ export class WorkersStore {
     }
   }
 
-  // вызывать этот метод внутри стора возмонжо
   getItemById(id: string): Worker | null {
     if (id) {
       return this.workers.find((item) => +id === item.id) ?? null;

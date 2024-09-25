@@ -1,8 +1,13 @@
 import { Link, Outlet } from 'react-router-dom';
-import { observer } from 'mobx-react-lite';
 import { ModalModule } from '../modules';
+import { Button } from '@mui/material';
 
-export const Layout: React.FC = observer(() => {
+export const Layout: React.FC = () => {
+  const clearStorageHandler = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <>
       <header>
@@ -10,6 +15,9 @@ export const Layout: React.FC = observer(() => {
           <Link to="/">Главная</Link>
           <Link to="/organizations">Организации</Link>
           <Link to="/workers">Сотрудники</Link>
+          <Button onClick={clearStorageHandler} variant="text">
+            Очистить localstorage
+          </Button>
         </nav>
       </header>
       <main>
@@ -18,4 +26,4 @@ export const Layout: React.FC = observer(() => {
       <ModalModule />
     </>
   );
-});
+};

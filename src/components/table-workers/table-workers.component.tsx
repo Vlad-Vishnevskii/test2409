@@ -45,7 +45,6 @@ export const TableWorkersComponent: React.FC = observer(() => {
           <TableHead>
             <TableRow>
               <TableCell>Организация</TableCell>
-              <TableCell>id орг</TableCell>
               <TableCell>Сотрудник</TableCell>
               <TableCell>Фамилия</TableCell>
               <TableCell>Имя</TableCell>
@@ -62,7 +61,6 @@ export const TableWorkersComponent: React.FC = observer(() => {
                 <TableCell component="th" scope="row">
                   {organizationsStore.getItemById(worker.organisationId)?.name}
                 </TableCell>
-                <TableCell>{worker.organisationId}</TableCell>
                 <TableCell>{worker.fullName}</TableCell>
                 <TableCell>{worker.firstName}</TableCell>
                 <TableCell>{worker.lastName}</TableCell>
