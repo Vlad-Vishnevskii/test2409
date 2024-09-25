@@ -1,0 +1,20 @@
+.tableOrganization {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 30px;
+  gap: 16px;
+
+  &_button {
+    box-sizing: border-box;
+    background: blue;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+}

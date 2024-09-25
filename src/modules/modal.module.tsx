@@ -24,8 +24,20 @@ export const ModalModule: React.FC = observer(() => {
       aria-describedby="modal-modal-description"
     >
       <>
-        {appStore.isWorkersModal() && <ModalWorkersComponent />}
-        {appStore.isOrganizationModal() && <ModalOrganizationsComponent />}
+        {appStore.isWorkersModal() && (
+          <ModalWorkersComponent
+            onClose={handleCloseModal}
+            isEditModal={appStore.isEditModal()}
+            editingId={appStore.editingId}
+          />
+        )}
+        {appStore.isOrganizationModal() && (
+          <ModalOrganizationsComponent
+            onClose={handleCloseModal}
+            isEditModal={appStore.isEditModal()}
+            editingId={appStore.editingId}
+          />
+        )}
       </>
     </Modal>
   );

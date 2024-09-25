@@ -1,31 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
-import workersStore from '../../store/workers-store/workers.store';
-import organizationsStore from '../../store/organizations-store/organizations.store';
+// import workersStore from '../../store/workers-store/workers.store';
+// import organizationsStore from '../../store/organizations-store/organizations.store';
 
 export const MainPage: React.FC = observer(() => {
-  const [newWorker, setNewWorker] = useState<string>('');
-  const [newOrg, setNewOrg] = useState<string>('');
+  // const [newWorker, setNewWorker] = useState<string>('');
+  // const [newOrg, setNewOrg] = useState<string>('');
 
-  const handleAdd = () => {
-    if (newWorker.trim()) {
-      workersStore.addItem(newWorker);
-      setNewWorker('');
-    }
-  };
-
-  const handleAddOrg = () => {
-    if (newOrg.trim()) {
-      organizationsStore.addItem(newOrg);
-      setNewOrg('');
-    }
-  };
+  // const handleAdd = () => {
+  //   if (newWorker.trim()) {
+  //     workersStore.addItem(newWorker);
+  //     setNewWorker('');
+  //   }
+  // };
 
   return (
     <>
       <h1>Главная</h1>
       <p>Описание</p>
-      <input
+      {/* <input
         type="text"
         value={newWorker}
         onChange={(e) => setNewWorker(e.target.value)}
@@ -36,7 +29,7 @@ export const MainPage: React.FC = observer(() => {
         value={newOrg}
         onChange={(e) => setNewOrg(e.target.value)}
       />
-      <button onClick={handleAddOrg}>AddOrg</button>
+      <button onClick={handleAddOrg}>AddOrg</button> */}
     </>
   );
 });

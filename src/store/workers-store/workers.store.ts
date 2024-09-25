@@ -3,9 +3,9 @@ import { makeAutoObservable } from 'mobx';
 interface Worker {
   firstName: string;
   lastName: string;
-  id: number;
-  fullName: string;
-  organization: number;
+  id?: number;
+  fullName?: string;
+  organisationId: string;
 }
 
 export class WorkersStore {
@@ -15,23 +15,63 @@ export class WorkersStore {
       lastName: 'Иванов',
       fullName: 'Иван Иванов',
       id: 1,
-      organization: 1,
+      organisationId: '1',
     },
   ];
-  lastWorkerId = this.getLastWorkerId();
+  filter: string = '';
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  addItem(worker: string) {
+  addItem(worker: Worker) {
     this.workers.push({
-      id: ++this.lastWorkerId,
-      firstName: worker,
-      lastName: worker,
-      fullName: `${worker} ${worker} ${worker}`,
-      organization: 1,
+      id: this.getLastWorkerId() + 1,
+      firstName: worker.firstName,
+      lastName: worker.lastName,
+      fullName: `${worker.firstName} ${worker.lastName}`,
+      organisationId: worker.organisationId,
     });
+  }
+
+  removeItem(worker: Worker) {
+    this.workers = this.workers.filter((item) => item.id !== worker.id);
+    // this.lastWorkerId = this.getLastWorkerId();
+  }
+
+  updateItem(worker: Worker, id: string): void {
+    if (id) {
+      const findedItem = this.workers.find((item) => +id === item.id);
+      if (findedItem) {
+        findedItem.firstName = worker.firstName;
+        findedItem.lastName = worker.lastName;
+        findedItem.fullName = `${worker.firstName} ${worker.lastName}`;
+        findedItem.organisationId = worker.organisationId;
+      }
+    }
+  }
+
+  // вызывать этот метод внутри стора возмонжо
+  getItemById(id: string): Worker | null {
+    if (id) {
+      return this.workers.find((item) => +id === item.id) ?? null;
+    }
+
+    return null;
+  }
+
+  setFilter(filter: string | null) {
+    if (filter) {
+      this.filter = filter;
+    }
+  }
+
+  get filterWorkers(): Worker[] {
+    if (this.filter) {
+      return this.workers.filter((item) => this.filter === item.organisationId);
+    } else {
+      return this.workers;
+    }
   }
 
   getLastWorkerId(): number {
