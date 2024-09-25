@@ -3,6 +3,9 @@ import styles from './styles.module.scss';
 import { Formik, Form, ErrorMessage } from 'formik';
 import workersStore from '../../store/workers-store/workers.store';
 import organizationsStore from '../../store/organizations-store/organizations.store';
+import { CrossIcon } from '../icons';
+import { Button } from '@mui/material';
+import TextField from '@mui/material/TextField';
 
 type Props = {
   onClose: () => void;
@@ -32,6 +35,9 @@ export const ModalWorkersComponent: React.FC<Props> = ({
 
   return (
     <div className={styles.modalWorkers}>
+      <button onClick={onClose} className={styles.modalWorkers_closeBtn}>
+        <CrossIcon />
+      </button>
       <h2>
         {isEditModal ? 'Редактировать сотрудника' : 'Добавить сотрудника'}
       </h2>
@@ -52,7 +58,7 @@ export const ModalWorkersComponent: React.FC<Props> = ({
       >
         {({ values, handleChange, handleBlur, isSubmitting }) => (
           <Form className={styles.modalWorkers_form}>
-            <input
+            <TextField
               className={styles.modalWorkers_field}
               type="text"
               name="firstName"
@@ -63,7 +69,7 @@ export const ModalWorkersComponent: React.FC<Props> = ({
               value={values.firstName}
             />
             <ErrorMessage name="name" component="div" />
-            <input
+            <TextField
               className={styles.modalWorkers_field}
               type="text"
               name="lastName"
@@ -71,6 +77,7 @@ export const ModalWorkersComponent: React.FC<Props> = ({
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.lastName}
+              required
             />
             <select
               className={styles.modalWorkers_field}
@@ -85,9 +92,9 @@ export const ModalWorkersComponent: React.FC<Props> = ({
                 </option>
               ))}
             </select>
-            <button type="submit" disabled={isSubmitting}>
+            <Button variant="contained" type="submit" disabled={isSubmitting}>
               Сохранить
-            </button>
+            </Button>
           </Form>
         )}
       </Formik>

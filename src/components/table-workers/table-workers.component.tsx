@@ -12,6 +12,7 @@ import workersStore from '../../store/workers-store/workers.store';
 import organizationsStore from '../../store/organizations-store/organizations.store';
 import appStore from '../../store/app-store/app.store';
 import { ModalTypes } from '../../store/app-store/app.store';
+import { Button } from '@mui/material';
 
 import styles from './styles.module.scss';
 
@@ -36,7 +37,9 @@ export const TableWorkersComponent: React.FC = observer(() => {
   return (
     <div className={styles.tableOrganization}>
       {filterByOrganisation && (
-        <span>{`Список по оргагнизации: "${organizationsStore.getNameById(
+        <span
+          style={{ fontWeight: '700' }}
+        >{`Список по оргагнизации: "${organizationsStore.getNameById(
           filterByOrganisation
         )}"`}</span>
       )}
@@ -44,11 +47,13 @@ export const TableWorkersComponent: React.FC = observer(() => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Организация</TableCell>
-              <TableCell>Сотрудник</TableCell>
-              <TableCell>Фамилия</TableCell>
-              <TableCell>Имя</TableCell>
-              <TableCell>Табельный номер</TableCell>
+              <TableCell style={{ fontWeight: '700' }}>Организация</TableCell>
+              <TableCell style={{ fontWeight: '700' }}>Сотрудник</TableCell>
+              <TableCell style={{ fontWeight: '700' }}>Фамилия</TableCell>
+              <TableCell style={{ fontWeight: '700' }}>Имя</TableCell>
+              <TableCell style={{ fontWeight: '700' }}>
+                Табельный номер
+              </TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
@@ -66,30 +71,31 @@ export const TableWorkersComponent: React.FC = observer(() => {
                 <TableCell>{worker.lastName}</TableCell>
                 <TableCell>{worker.id}</TableCell>
                 <TableCell>
-                  <button
-                    className={styles.tableOrganization_button}
+                  <Button
+                    variant="contained"
+                    color="success"
+                    style={{ margin: '0 5px' }}
                     onClick={() => handleOpenEditModal(`${worker.id}`)}
                   >
                     Редактировать
-                  </button>
-                  <button
-                    className={styles.tableOrganization_button}
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    style={{ margin: '0 5px' }}
                     onClick={() => workersStore.removeItem(worker)}
                   >
                     Удалить
-                  </button>
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <button
-        className={styles.tableOrganization_button}
-        onClick={handleOpenModal}
-      >
+      <Button variant="contained" onClick={handleOpenModal}>
         Добавить сотрудника
-      </button>
+      </Button>
     </div>
   );
 });
