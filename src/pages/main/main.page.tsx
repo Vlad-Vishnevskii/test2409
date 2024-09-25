@@ -1,35 +1,19 @@
 import React from 'react';
-import { observer } from 'mobx-react-lite';
-// import workersStore from '../../store/workers-store/workers.store';
-// import organizationsStore from '../../store/organizations-store/organizations.store';
+import Typewriter from 'react-ts-typewriter';
 
-export const MainPage: React.FC = observer(() => {
-  // const [newWorker, setNewWorker] = useState<string>('');
-  // const [newOrg, setNewOrg] = useState<string>('');
-
-  // const handleAdd = () => {
-  //   if (newWorker.trim()) {
-  //     workersStore.addItem(newWorker);
-  //     setNewWorker('');
-  //   }
-  // };
-
+export const MainPage: React.FC = () => {
   return (
-    <>
-      <h1>Главная</h1>
-      <p>Описание</p>
-      {/* <input
-        type="text"
-        value={newWorker}
-        onChange={(e) => setNewWorker(e.target.value)}
-      />
-      <button onClick={handleAdd}>Add</button>
-      <input
-        type="text"
-        value={newOrg}
-        onChange={(e) => setNewOrg(e.target.value)}
-      />
-      <button onClick={handleAddOrg}>AddOrg</button> */}
-    </>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        padding: '0 50px',
+        fontSize: '55px',
+      }}
+    >
+      <Typewriter text="Добрый день меня зовут Вишневский Владислав, представляю вам выполненное мною тестовое задание! Все пункты тз постарался реализовать. Стили я писал очень бегло, надеюсь это не главный критерий надеюсь на обратную связь при любом результате)))" />
+    </div>
   );
-});
+};

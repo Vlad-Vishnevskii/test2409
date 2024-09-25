@@ -13,7 +13,7 @@ export const Layout: React.FC = () => {
 
   return (
     <>
-      <header>
+      <header style={{ display: 'flex', justifyContent: 'space-between' }}>
         <ButtonGroup variant="contained" aria-label="Basic button group">
           <Button>
             <Link className={styles.link} to="/">
@@ -30,8 +30,10 @@ export const Layout: React.FC = () => {
               Сотрудники
             </Link>
           </Button>
-          <Button onClick={clearStorageHandler}>Очистить localstorage</Button>
         </ButtonGroup>
+        <Button variant="contained" onClick={clearStorageHandler}>
+          Очистить localstorage
+        </Button>
       </header>
       <main>
         <Outlet />
